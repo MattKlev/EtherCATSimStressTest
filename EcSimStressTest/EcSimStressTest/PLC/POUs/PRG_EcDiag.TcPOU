@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="PRG_EcDiag" Id="{6a0894a2-457c-47e4-add4-3b0589a60be2}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM PRG_EcDiag
+VAR
+	sEcMasterDevStates			:ARRAY[1..NumofEcMasters] OF STRING;
+	iEcMasterDevStates	AT%I*	:ARRAY[1..NumofEcMasters] OF UINT;	
+END_VAR
+VAR_TEMP
+	i						:UDINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[FOR i:=1 TO NumOfEcMasters DO
+	sEcMasterDevStates[i]:= F_ConvMasterDevStateToString(iEcMasterDevStates[i]);
+END_FOR
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="MAIN" Id="{c53a4bec-71d5-4e96-ba06-f49f987385ba}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+
+	xResetCounters				:BOOL;
+	LocalEcDevState		AT%I*	:UINT ;
+	EncoderLoopBack				:ARRAY[1..NumOfEcMasters] OF FB_EncoderLoopBack;
+END_VAR
+
+VAR_TEMP
+	i						:UDINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[PRG_EcDiag();
+
+FOR i:=1 TO NumOfEcMasters DO
+	EncoderLoopBack[i]();
+END_FOR
+
+IF xResetCounters THEN
+	xResetCounters:=FALSE;
+	FOR i:=1 TO NumOfEcMasters DO
+		EncoderLoopBack[i].Reset();
+	END_FOR
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

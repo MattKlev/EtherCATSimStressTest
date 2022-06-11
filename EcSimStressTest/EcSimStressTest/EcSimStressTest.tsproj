@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.29">
+	<Project ProjectGUID="{776C398C-BA0D-40FB-90A2-F7309F8209A0}" TargetNetId="5.24.131.22.1.1" Target64Bit="true" RelativeTargetNetId="true" RelativeIpAddresses="true" ShowHideConfigurations="#x3c7">
+		<System>
+			<Settings MaxCpus="4" NonWinCpus="1" RouterMemory="536870912">
+				<Cpu CpuId="3" BaseTime="1250"/>
+				<IoIdleTask CycleTime="1250"/>
+			</Settings>
+			<Licenses CacheOrCheckLicensesOnStartup="true">
+				<Target>
+					<LicenseDevice DongleHardwareId="2" DongleDevice="#x03020002" DongleLevel="70" DongleSystemId="{F601B62D-5C41-DF4E-204D-1C225E1F3778}"/>
+				</Target>
+			</Licenses>
+			<Tasks>
+				<Task Id="3" Priority="20" CycleTime="1250" AmsPort="350" AdtTasks="true">
+					<Name>PlcTask</Name>
+				</Task>
+			</Tasks>
+		</System>
+		<Plc>
+			<Project File="PLC.xti"/>
+		</Plc>
+		<Io>
+			<Device File="Local EtherCAT.xti" Id="1"/>
+			<Device File="EtherCAT 1.xti" Id="10"/>
+			<Device File="EtherCAT 2.xti" Id="3"/>
+			<Device File="EtherCAT 3.xti" Id="4"/>
+			<Device File="EtherCAT 4.xti" Id="5"/>
+			<Device File="EtherCAT 5.xti" Id="6"/>
+			<Device File="EtherCAT 6.xti" Id="7"/>
+		</Io>
+	</Project>
+	<Mappings>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500810000403}" Id="#x02030070"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500850000403}" Id="#x02030030"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500870000403}" Id="#x02030020"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500890000403}" Id="#x02030060"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-5008B0000403}" Id="#x02030050"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-5008D0000403}" Id="#x02030040"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-5008F0000403}" Id="#x02030010"/>
+	</Mappings>
+</TcSmProject>

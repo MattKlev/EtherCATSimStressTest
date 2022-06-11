@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="FB_EncoderLoopBack" Id="{b6074c09-58af-4ff8-b725-3a1ac19cf986}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_EncoderLoopBack
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	wcState				AT%I*			:BOOL;
+	EncoderCountIn		AT%I*			:UDINT;	
+	AnalogOut			AT%Q*			:INT;
+	
+	FirstScan							:BOOL:=TRUE;
+	EncoderCountPrevCycle				:UDINT;
+	OldDataCounter						:UDINT;		
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT FirstScan AND wcState=0 THEN
+	IF(EncoderCountPrevCycle=EncoderCountIn)THEN
+		OldDataCounter:=OldDataCounter+1;
+	END_IF	
+ELSE
+	FirstScan:=FALSE;
+END_IF
+
+EncoderCountPrevCycle:=EncoderCountIn;
+
+
+AnalogOut:=TO_INT(EncoderCountIn);]]></ST>
+    </Implementation>
+    <Method Name="Reset" Id="{c3b7d6b0-5968-4fc1-aca6-ba1773cea8c7}">
+      <Declaration><![CDATA[METHOD Reset
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[OldDataCounter:=0;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

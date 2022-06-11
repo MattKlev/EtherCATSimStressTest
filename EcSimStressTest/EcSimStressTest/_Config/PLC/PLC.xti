@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.29" ClassName="CNestedPlcProjDef">
+	<DataTypes>
+		<DataType>
+			<Name GUID="{08D99F99-574D-FAC7-C82A-15DC40DE3400}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..6] OF UINT</Name>
+			<BitSize>96</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
+			<ArrayInfo>
+				<LBound>1</LBound>
+				<Elements>6</Elements>
+			</ArrayInfo>
+		</DataType>
+	</DataTypes>
+	<Project GUID="{F4D20D23-89C3-4B29-B643-B8AD70F92A4D}" Name="PLC" PrjFilePath="..\..\PLC\PLC.plcproj" TmcFilePath="..\..\PLC\PLC.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2">
+			<Name>PLC Instance</Name>
+			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+			<Vars VarGrpType="1">
+				<Name>PlcTask Inputs</Name>
+				<Var>
+					<Name>MAIN.EncoderLoopBack[1].wcState</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EncoderLoopBack[1].EncoderCountIn</Name>
+					<Type>UDINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EncoderLoopBack[2].wcState</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EncoderLoopBack[2].EncoderCountIn</Name>
+					<Type>UDINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EncoderLoopBack[3].wcState</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EncoderLoopBack[3].EncoderCountIn</Name>
+					<Type>UDINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EncoderLoopBack[4].wcState</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EncoderLoopBack[4].EncoderCountIn</Name>
+					<Type>UDINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EncoderLoopBack[5].wcState</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EncoderLoopBack[5].EncoderCountIn</Name>
+					<Type>UDINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EncoderLoopBack[6].wcState</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EncoderLoopBack[6].EncoderCountIn</Name>
+					<Type>UDINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.LocalEcDevState</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>PRG_EcDiag.iEcMasterDevStates</Name>
+					<Type GUID="{08D99F99-574D-FAC7-C82A-15DC40DE3400}">ARRAY [1..6] OF UINT</Type>
+				</Var>
+			</Vars>
+			<Vars VarGrpType="2" AreaNo="1">
+				<Name>PlcTask Outputs</Name>
+				<Var>
+					<Name>MAIN.EncoderLoopBack[1].AnalogOut</Name>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EncoderLoopBack[2].AnalogOut</Name>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EncoderLoopBack[3].AnalogOut</Name>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EncoderLoopBack[4].AnalogOut</Name>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EncoderLoopBack[5].AnalogOut</Name>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EncoderLoopBack[6].AnalogOut</Name>
+					<Type>INT</Type>
+				</Var>
+			</Vars>
+			<Contexts>
+				<Context>
+					<Id NeedCalleeCall="true">0</Id>
+					<Name>PlcTask</Name>
+					<ManualConfig>
+						<OTCID>#x02010030</OTCID>
+					</ManualConfig>
+					<Priority>20</Priority>
+					<CycleTime>125000</CycleTime>
+				</Context>
+			</Contexts>
+			<TaskPouOids>
+				<TaskPouOid Prio="20" OTCID="#x08502001"/>
+			</TaskPouOids>
+		</Instance>
+	</Project>
+	<Mappings>
+		<OwnerA Name="PLC Instance">
+			<OwnerB Name="TIID^EtherCAT 1">
+				<Link VarA="PlcTask Inputs^PRG_EcDiag.iEcMasterDevStates[1]" VarB="Inputs^DevState"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT 1^Term 4 (EK1100)^Term 5 (EL5001)">
+				<Link VarA="PlcTask Inputs^MAIN.EncoderLoopBack[1].EncoderCountIn" VarB="SSI Inputs^Counter value"/>
+				<Link VarA="PlcTask Inputs^MAIN.EncoderLoopBack[1].wcState" VarB="WcState^WcState" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT 1^Term 4 (EK1100)^Term 6 (EL4102)">
+				<Link VarA="PlcTask Outputs^MAIN.EncoderLoopBack[1].AnalogOut" VarB="Channel 1^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT 2">
+				<Link VarA="PlcTask Inputs^PRG_EcDiag.iEcMasterDevStates[2]" VarB="Inputs^DevState"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT 2^Term 8 (EK1100)^Term 10 (EL4102)">
+				<Link VarA="PlcTask Outputs^MAIN.EncoderLoopBack[2].AnalogOut" VarB="Channel 1^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT 2^Term 8 (EK1100)^Term 9 (EL5001)">
+				<Link VarA="PlcTask Inputs^MAIN.EncoderLoopBack[2].EncoderCountIn" VarB="SSI Inputs^Counter value"/>
+				<Link VarA="PlcTask Inputs^MAIN.EncoderLoopBack[2].wcState" VarB="WcState^WcState" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT 3">
+				<Link VarA="PlcTask Inputs^PRG_EcDiag.iEcMasterDevStates[3]" VarB="Inputs^DevState"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT 3^Term 12 (EK1100)^Term 13 (EL5001)">
+				<Link VarA="PlcTask Inputs^MAIN.EncoderLoopBack[3].EncoderCountIn" VarB="SSI Inputs^Counter value"/>
+				<Link VarA="PlcTask Inputs^MAIN.EncoderLoopBack[3].wcState" VarB="WcState^WcState" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT 3^Term 12 (EK1100)^Term 14 (EL4102)">
+				<Link VarA="PlcTask Outputs^MAIN.EncoderLoopBack[3].AnalogOut" VarB="Channel 1^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT 4">
+				<Link VarA="PlcTask Inputs^PRG_EcDiag.iEcMasterDevStates[4]" VarB="Inputs^DevState"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT 4^Term 16 (EK1100)^Term 17 (EL5001)">
+				<Link VarA="PlcTask Inputs^MAIN.EncoderLoopBack[4].EncoderCountIn" VarB="SSI Inputs^Counter value"/>
+				<Link VarA="PlcTask Inputs^MAIN.EncoderLoopBack[4].wcState" VarB="WcState^WcState" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT 4^Term 16 (EK1100)^Term 18 (EL4102)">
+				<Link VarA="PlcTask Outputs^MAIN.EncoderLoopBack[4].AnalogOut" VarB="Channel 1^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT 5">
+				<Link VarA="PlcTask Inputs^PRG_EcDiag.iEcMasterDevStates[5]" VarB="Inputs^DevState"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT 5^Term 20 (EK1100)^Term 21 (EL5001)">
+				<Link VarA="PlcTask Inputs^MAIN.EncoderLoopBack[5].EncoderCountIn" VarB="SSI Inputs^Counter value"/>
+				<Link VarA="PlcTask Inputs^MAIN.EncoderLoopBack[5].wcState" VarB="WcState^WcState" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT 5^Term 20 (EK1100)^Term 22 (EL4102)">
+				<Link VarA="PlcTask Outputs^MAIN.EncoderLoopBack[5].AnalogOut" VarB="Channel 1^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT 6">
+				<Link VarA="PlcTask Inputs^PRG_EcDiag.iEcMasterDevStates[6]" VarB="Inputs^DevState"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT 6^Term 24 (EK1100)^Term 25 (EL5001)">
+				<Link VarA="PlcTask Inputs^MAIN.EncoderLoopBack[6].EncoderCountIn" VarB="SSI Inputs^Counter value"/>
+				<Link VarA="PlcTask Inputs^MAIN.EncoderLoopBack[6].wcState" VarB="WcState^WcState" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT 6^Term 24 (EK1100)^Term 26 (EL4102)">
+				<Link VarA="PlcTask Outputs^MAIN.EncoderLoopBack[6].AnalogOut" VarB="Channel 1^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Local EtherCAT">
+				<Link VarA="PlcTask Inputs^MAIN.LocalEcDevState" VarB="Inputs^DevState"/>
+			</OwnerB>
+		</OwnerA>
+	</Mappings>
+</TcSmItem>
